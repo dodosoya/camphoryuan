@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dodosoya.github.io/camphoryuan/sitemap.xml
