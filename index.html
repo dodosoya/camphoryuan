@@ -208,46 +208,54 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Store",
-    "name": "牛樟緣",
-    "description": "台灣自產牛樟茶，來自深山原生牛樟木的珍貴好茶。家族親手照料的牛樟林，製成手工茶與你分享。",
-    "url": "https://camphoryuan.com/",
-    "telephone": "+886912627633",
-    "image": "https://camphoryuan.com/assets/hero.jpg",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "TW"
-    },
-    "inLanguage": "zh-TW",
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "牛樟葉手工茶",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Product",
-            "name": "牛樟葉手工茶",
-            "description": "台灣特有牛樟樹葉製成的手工茶，具有天然木質香氣與珍稀健康價值",
-            "image": "https://camphoryuan.com/assets/hero.jpg",
-            "brand": {
-              "@type": "Brand",
-              "name": "牛樟緣"
-            },
-            "offers": {
-              "@type": "Offer",
-              "url": "https://camphoryuan.com/",
-              "availability": "https://schema.org/InStock",
-              "priceCurrency": "TWD",
-              "seller": {
-                "@type": "Organization",
-                "name": "牛樟緣"
-              }
-            }
+    "@graph": [
+      {
+        "@type": "Store",
+        "@id": "https://camphoryuan.com/#store",
+        "name": "牛樟緣",
+        "description": "台灣自產牛樟茶，來自深山原生牛樟木的珍貴好茶。家族親手照料的牛樟林，製成手工茶與你分享。",
+        "url": "https://camphoryuan.com/",
+        "telephone": "+886912627633",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://camphoryuan.com/assets/hero.jpg",
+          "width": 1200,
+          "height": 630
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "TW",
+          "addressLocality": "台灣"
+        },
+        "priceRange": "$$"
+      },
+      {
+        "@type": "Product",
+        "@id": "https://camphoryuan.com/#camphor-tea",
+        "name": "牛樟葉手工茶",
+        "description": "台灣特有牛樟樹葉製成的手工茶，具有天然木質香氣與珍稀健康價值。採自深山原生牛樟木，天然無農藥，日曬熟成。",
+        "image": "https://camphoryuan.com/assets/hero.jpg",
+        "brand": {
+          "@type": "Brand",
+          "name": "牛樟緣"
+        },
+        "countryOfOrigin": {
+          "@type": "Country",
+          "name": "Taiwan"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://camphoryuan.com/",
+          "availability": "https://schema.org/InStock",
+          "priceCurrency": "TWD",
+          "lowPrice": "20",
+          "highPrice": "40",
+          "seller": {
+            "@id": "https://camphoryuan.com/#store"
           }
         }
-      ]
-    }
+      }
+    ]
   }
   </script>
 </head>
