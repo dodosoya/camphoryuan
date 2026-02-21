@@ -266,7 +266,7 @@
     <!-- Layer 1: uniform base overlay (ensures readable text over any image area) -->
     <div class="absolute inset-0" style="background-color:rgba(27,51,13,0.55);"></div>
     <!-- Layer 2: heavy gradient at bottom where text sits, fades to transparent at top -->
-    <div class="absolute inset-0 bg-gradient-to-t from-forest-dark/90 via-forest-dark/40 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-forest-dark/40 via-forest-dark/40 to-transparent"></div>
 
     <div class="relative z-10 px-5 pb-12 sm:pb-16 md:pb-20 max-w-5xl mx-auto w-full">
       <!-- Eyebrow -->
@@ -317,13 +317,13 @@
         <!-- Photo grid -->
         <div class="w-full md:w-1/2 grid grid-cols-2 gap-2.5 reveal">
           <div class="zoom-wrap col-span-2">
-            <img src="assets/story-1.jpg" alt="家族在農場照料牛樟樹" class="h-52 sm:h-60 md:h-64 object-cover">
+            <img src="assets/story-1.jpg" alt="牛樟園" class="h-52 sm:h-60 md:h-64 object-cover">
           </div>
           <div class="zoom-wrap">
-            <img src="assets/story-2.jpg" alt="家人澆水照料樹苗" class="h-36 sm:h-40 object-cover" loading="lazy">
+            <img src="assets/story-2.jpg" alt="牛樟葉" class="h-36 sm:h-40 object-cover" loading="lazy">
           </div>
           <div class="zoom-wrap">
-            <img src="assets/tree.jpg" alt="牛樟樹特寫" class="h-36 sm:h-40 object-cover" loading="lazy">
+            <img src="assets/story-3.jpg" alt="牛樟茶特寫" class="h-36 sm:h-40 object-cover" loading="lazy">
           </div>
         </div>
 
@@ -598,23 +598,25 @@
       </div>
 
       <!-- Asymmetric grid:
-           Mobile (2-col):  [1][2] / [3][4 wide]
-           Desktop (4-col): [1 large 2×2][2][3] / [       ][4 wide 2×1]
+           Mobile (2-col):  [1 wide full row] / [2][3] / [4][5]
+           Desktop (4-col): [1 large 2×2][2][3] / [       ][4][5]
       -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 reveal">
-        <!-- Large hero photo (spans 2 cols × 2 rows on desktop) -->
-        <div class="zoom-wrap md:col-span-2 md:row-span-2">
-          <img src="assets/gallery-1.jpg" alt="農場全景" class="h-44 sm:h-52 md:h-[330px] object-cover" loading="lazy">
+        <!-- Large hero photo (spans full width on mobile, 2×2 on desktop) -->
+        <div class="zoom-wrap col-span-2 md:row-span-2">
+          <img src="assets/gallery-1.jpg" alt="農場圖1" class="h-56 sm:h-64 md:h-[330px] object-cover" loading="lazy">
         </div>
         <div class="zoom-wrap">
-          <img src="assets/gallery-2.jpg" alt="牛樟葉特寫" class="h-44 sm:h-52 md:h-[157px] object-cover" loading="lazy">
+          <img src="assets/gallery-2.jpg" alt="農場圖2" class="h-44 sm:h-52 md:h-[157px] object-cover" loading="lazy">
         </div>
         <div class="zoom-wrap">
-          <img src="assets/gallery-3.jpg" alt="製茶過程" class="h-44 sm:h-52 md:h-[157px] object-cover" loading="lazy">
+          <img src="assets/gallery-3.jpg" alt="農場圖3" class="h-44 sm:h-52 md:h-[157px] object-cover" loading="lazy">
         </div>
-        <!-- Wide bottom photo (spans 2 cols on both mobile and desktop) -->
-        <div class="zoom-wrap col-span-2">
-          <img src="assets/gallery-4.jpg" alt="茶湯成品" class="h-44 sm:h-52 md:h-[157px] object-cover" loading="lazy">
+        <div class="zoom-wrap">
+          <img src="assets/gallery-4.jpg" alt="農場圖4" class="h-44 sm:h-52 md:h-[157px] object-cover" loading="lazy">
+        </div>
+        <div class="zoom-wrap">
+          <img src="assets/gallery-5.jpg" alt="農場圖5" class="h-44 sm:h-52 md:h-[157px] object-cover" loading="lazy">
         </div>
       </div>
     </div>
@@ -638,8 +640,7 @@
           <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold font-serif mb-3">想喝一杯山林之茶？</h2>
           <span class="gold-line"></span>
           <p class="text-cream/65 text-sm sm:text-base leading-loose mt-5 mb-10">
-            加我們的 LINE 聊聊，或直接來電詢問。<br>
-            自產自銷，歡迎團購訂製。
+            加我們的 LINE 聊聊，或直接來電詢問。
           </p>
         </div>
 
