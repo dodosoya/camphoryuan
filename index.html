@@ -47,6 +47,9 @@
       }
     }
   </script>
+  <!-- Preload LCP hero image so the browser fetches it before the parser reaches the <img> -->
+  <link rel="preload" as="image" href="assets/hero.jpg" fetchpriority="high">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -271,7 +274,9 @@
       src="assets/hero.jpg"
       alt="牛樟林全景"
       class="absolute inset-0 w-full h-full object-cover hero-img"
+      width="4416" height="2944"
       loading="eager"
+      fetchpriority="high"
     >
     <!-- Layer 1: uniform base overlay (ensures readable text over any image area) -->
     <div class="absolute inset-0" style="background-color:rgba(27,51,13,0.55);"></div>
@@ -327,13 +332,13 @@
         <!-- Photo grid -->
         <div class="w-full md:w-1/2 grid grid-cols-2 gap-2.5 reveal">
           <div class="zoom-wrap col-span-2">
-            <img src="assets/story-1.jpg" alt="牛樟園" class="h-52 sm:h-60 md:h-64 object-cover">
+            <img src="assets/story-1.jpg" alt="牛樟園" class="h-52 sm:h-60 md:h-64 object-cover" width="4416" height="2944" loading="lazy" decoding="async">
           </div>
           <div class="zoom-wrap">
-            <img src="assets/story-2.jpg" alt="牛樟葉" class="h-36 sm:h-40 object-cover" loading="lazy">
+            <img src="assets/story-2.jpg" alt="牛樟葉" class="h-36 sm:h-40 object-cover" width="4416" height="2944" loading="lazy" decoding="async">
           </div>
           <div class="zoom-wrap">
-            <img src="assets/story-3.jpg" alt="牛樟茶特寫" class="h-36 sm:h-40 object-cover" loading="lazy">
+            <img src="assets/story-3.jpg" alt="牛樟茶特寫" class="h-36 sm:h-40 object-cover" width="4416" height="2944" loading="lazy" decoding="async">
           </div>
         </div>
 
@@ -614,19 +619,19 @@
       <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 reveal">
         <!-- Large hero photo (spans full width on mobile, 2×2 on desktop) -->
         <div class="zoom-wrap col-span-2 md:row-span-2">
-          <img src="assets/gallery-1.jpg" alt="農場圖1" class="h-56 sm:h-64 md:h-[330px] object-cover" loading="lazy">
+          <img src="assets/gallery-1.jpg" alt="農場圖1" class="h-56 sm:h-64 md:h-[330px] object-cover" width="4416" height="2944" loading="lazy" decoding="async">
         </div>
         <div class="zoom-wrap">
-          <img src="assets/gallery-2.jpg" alt="農場圖2" class="h-44 sm:h-52 md:h-[157px] object-cover" loading="lazy">
+          <img src="assets/gallery-2.jpg" alt="農場圖2" class="h-44 sm:h-52 md:h-[157px] object-cover" width="4416" height="2944" loading="lazy" decoding="async">
         </div>
         <div class="zoom-wrap">
-          <img src="assets/gallery-3.jpg" alt="農場圖3" class="h-44 sm:h-52 md:h-[157px] object-cover" loading="lazy">
+          <img src="assets/gallery-3.jpg" alt="農場圖3" class="h-44 sm:h-52 md:h-[157px] object-cover" width="4416" height="2944" loading="lazy" decoding="async">
         </div>
         <div class="zoom-wrap">
-          <img src="assets/gallery-4.jpg" alt="農場圖4" class="h-44 sm:h-52 md:h-[157px] object-cover" loading="lazy">
+          <img src="assets/gallery-4.jpg" alt="農場圖4" class="h-44 sm:h-52 md:h-[157px] object-cover" width="1618" height="1011" loading="lazy" decoding="async">
         </div>
         <div class="zoom-wrap">
-          <img src="assets/gallery-5.jpg" alt="農場圖5" class="h-44 sm:h-52 md:h-[157px] object-cover" loading="lazy">
+          <img src="assets/gallery-5.jpg" alt="農場圖5" class="h-44 sm:h-52 md:h-[157px] object-cover" width="4416" height="2944" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
