@@ -40,7 +40,7 @@ Single-page static site — everything lives in `index.html`:
 
 ## Pending Items (from plan.md)
 
-- [ ] LINE official account QR code — placeholder exists in contact section
+- [x] LINE official account QR code — `assets/contact-qr-code.jpg` added to contact section
 - [ ] Phone number — `<a href="tel:">` is empty, needs real number
 - [ ] LINE documentary video for the brand
 
