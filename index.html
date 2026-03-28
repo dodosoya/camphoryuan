@@ -205,6 +205,169 @@
       .reveal.visible .gold-line { animation: none; width: 36px; opacity: 1; }
       .icon-pop, .feat-icon { opacity: 1; transform: none; transition: none; }
     }
+
+    /* ══════════════════════════════════════════
+       NAVIGATION BAR — designed for readability
+    ══════════════════════════════════════════ */
+    #site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background-color: #F5F0E8;
+      border-bottom: 1px solid rgba(45, 80, 22, 0.12);
+      box-shadow: 0 2px 16px rgba(27, 51, 13, 0.10);
+
+      /* Hidden above the fold — slides in on scroll */
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity   0.35s ease;
+      pointer-events: none;
+    }
+    #site-nav.nav-visible {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      height: 64px;
+    }
+
+    /* Brand */
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #2D5016;
+      font-family: 'Noto Serif TC', Georgia, serif;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+      min-height: 44px;
+    }
+    .nav-leaf {
+      width: 18px;
+      height: 18px;
+      color: #C8973A;
+      flex-shrink: 0;
+    }
+    .nav-brand:hover { color: #C8973A; }
+
+    /* Links list */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      flex: 1;
+      /* Push to the right so brand stays left */
+      justify-content: flex-end;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+
+    /* Individual nav links */
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      height: 64px;
+      padding: 0 14px;
+      text-decoration: none;
+      color: #2D5016;
+      font-family: 'Noto Serif TC', Georgia, serif;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+      position: relative;
+    }
+    .nav-link:hover {
+      color: #C8973A;
+    }
+    .nav-link.active {
+      color: #2D5016;
+      border-bottom-color: #C8973A;
+      font-weight: 700;
+    }
+
+    /* CTA button — "聯絡購買" stands out */
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      height: 42px;
+      padding: 0 20px;
+      margin-left: 8px;
+      text-decoration: none;
+      color: #F5F0E8;
+      background-color: #2D5016;
+      font-family: 'Noto Serif TC', Georgia, serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      border-radius: 100px;
+      border: 2px solid transparent;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      flex-shrink: 0;
+    }
+    .nav-cta:hover {
+      background-color: #C8973A;
+      color: #F5F0E8;
+    }
+    .nav-cta.active {
+      background-color: #C8973A;
+    }
+
+    /* Mobile: tighter padding, brand text hidden to save space, larger touch targets */
+    @media (max-width: 640px) {
+      .nav-inner {
+        padding: 0 12px;
+        gap: 0;
+        height: 58px;
+      }
+      .nav-brand span {
+        /* Hide brand text on mobile — leaf icon remains */
+        display: none;
+      }
+      .nav-link {
+        font-size: 15px;
+        padding: 0 10px;
+        height: 58px;
+      }
+      .nav-cta {
+        font-size: 15px;
+        padding: 0 14px;
+        height: 38px;
+        margin-left: 4px;
+      }
+    }
+
+    /* Nudge body so anchors don't hide under the fixed nav */
+    :target {
+      scroll-margin-top: 72px;
+    }
+
+    /* Reduced motion: skip the slide-in */
+    @media (prefers-reduced-motion: reduce) {
+      #site-nav { transition: none; }
+    }
   </style>
 
   <!-- 結構化資料 (Google Rich Results) -->
@@ -265,6 +428,35 @@
   </script>
 </head>
 <body>
+
+  <!-- ═══════════════════════════════
+       NAVIGATION BAR
+  ═══════════════════════════════ -->
+  <nav id="site-nav" aria-label="主選單" role="navigation">
+    <div class="nav-inner">
+      <!-- Brand mark -->
+      <a href="#" class="nav-brand" aria-label="回到頁面頂端">
+        <svg class="nav-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20C19 20 22 3 22 3c-1 2-8 2-8 2z"/>
+        </svg>
+        <span>牛樟緣</span>
+      </a>
+
+      <!-- Nav links — horizontally scrollable on small screens -->
+      <ul class="nav-links" role="list">
+        <li><a href="#story"    class="nav-link" data-section="story">我們的故事</a></li>
+        <li><a href="#tree"     class="nav-link" data-section="tree">牛樟樹介紹</a></li>
+        <li><a href="#process"  class="nav-link" data-section="process">製作過程</a></li>
+        <li><a href="#benefits" class="nav-link" data-section="benefits">產品特色</a></li>
+        <li><a href="#gallery"  class="nav-link" data-section="gallery">農場實景</a></li>
+        <li>
+          <a href="#contact" class="nav-cta" data-section="contact">
+            聯絡購買
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
   <!-- ═══════════════════════════════
        1. HERO
@@ -371,7 +563,7 @@
   <!-- ═══════════════════════════════
        3. CAMPHOR TREE INTRO  (forest bg + organic waves)
   ═══════════════════════════════ -->
-  <section class="bg-forest text-cream">
+  <section id="tree" class="bg-forest text-cream">
     <!-- Top wave: cream bleeds into forest -->
     <svg viewBox="0 0 1440 48" preserveAspectRatio="none" style="width:100%;height:48px;display:block;" aria-hidden="true">
       <path d="M0,48 C360,8 1080,42 1440,18 L1440,0 L0,0 Z" fill="#F5F0E8"/>
@@ -443,7 +635,7 @@
   <!-- ═══════════════════════════════
        4. TEA MAKING PROCESS
   ═══════════════════════════════ -->
-  <section class="py-16 sm:py-20 md:py-28 px-5 sm:px-8 bg-cream">
+  <section id="process" class="py-16 sm:py-20 md:py-28 px-5 sm:px-8 bg-cream">
     <div class="max-w-4xl mx-auto">
 
       <div class="text-center mb-12 reveal">
@@ -529,7 +721,7 @@
   <!-- ═══════════════════════════════
        5. PRODUCT BENEFITS
   ═══════════════════════════════ -->
-  <section class="py-16 sm:py-20 md:py-28 px-5 sm:px-8" style="background-color:#EDE4D3;">
+  <section id="benefits" class="py-16 sm:py-20 md:py-28 px-5 sm:px-8" style="background-color:#EDE4D3;">
     <div class="max-w-4xl mx-auto">
 
       <div class="text-center mb-12 reveal">
@@ -604,7 +796,7 @@
   <!-- ═══════════════════════════════
        6. PHOTO GALLERY
   ═══════════════════════════════ -->
-  <section class="py-16 sm:py-20 md:py-28 px-5 sm:px-8 bg-cream">
+  <section id="gallery" class="py-16 sm:py-20 md:py-28 px-5 sm:px-8 bg-cream">
     <div class="max-w-5xl mx-auto">
 
       <div class="text-center mb-12 reveal">
@@ -642,7 +834,7 @@
   <!-- ═══════════════════════════════
        7. CONTACT / CTA  (forest bg + top wave)
   ═══════════════════════════════ -->
-  <section class="bg-forest text-cream">
+  <section id="contact" class="bg-forest text-cream">
     <!-- Top wave: cream bleeds into forest -->
     <svg viewBox="0 0 1440 48" preserveAspectRatio="none" style="width:100%;height:48px;display:block;" aria-hidden="true">
       <path d="M0,48 C480,10 960,42 1440,22 L1440,0 L0,0 Z" fill="#F5F0E8"/>
@@ -729,6 +921,51 @@
         { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
       );
       els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+
+  <!-- ═══════════════════════════════
+       JS: Navigation bar — show/hide + active section highlight
+  ═══════════════════════════════ -->
+  <script>
+    (function () {
+      var nav      = document.getElementById('site-nav');
+      var links    = document.querySelectorAll('.nav-link, .nav-cta');
+      var hero     = document.querySelector('body > section'); // first section = hero
+      var sections = ['story', 'tree', 'process', 'benefits', 'gallery', 'contact']
+                       .map(function (id) { return document.getElementById(id); })
+                       .filter(Boolean);
+
+      // ── Show nav once hero scrolls out of view ──
+      var heroObserver = new IntersectionObserver(
+        function (entries) {
+          if (!entries[0].isIntersecting) {
+            nav.classList.add('nav-visible');
+          } else {
+            nav.classList.remove('nav-visible');
+            // Clear active states when hero is visible
+            links.forEach(function (l) { l.classList.remove('active'); });
+          }
+        },
+        { threshold: 0.08 }
+      );
+      if (hero) heroObserver.observe(hero);
+
+      // ── Highlight active section as user scrolls ──
+      var sectionObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              var id = entry.target.id;
+              links.forEach(function (l) {
+                l.classList.toggle('active', l.dataset.section === id);
+              });
+            }
+          });
+        },
+        { rootMargin: '-30% 0px -60% 0px' }
+      );
+      sections.forEach(function (s) { sectionObserver.observe(s); });
     })();
   </script>
 
