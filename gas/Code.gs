@@ -1,9 +1,36 @@
-// ── Configuration: fill these three values before deploying ──
-var SHEET_ID            = 'YOUR_GOOGLE_SHEET_ID_HERE';       // from Sheet URL: /d/<ID>/edit
-var CHANNEL_ACCESS_TOKEN = 'YOUR_CHANNEL_ACCESS_TOKEN_HERE'; // LINE Developers → Messaging API → Channel access token
-var OWNER_USER_ID        = 'YOUR_LINE_USER_ID_HERE';         // LINE Developers → top-right profile → "Your user ID"
+// ── Configuration ──
+var SHEET_ID             = 'YOUR_GOOGLE_SHEET_ID_HERE';
+var CHANNEL_ACCESS_TOKEN = 'YOUR_CHANNEL_ACCESS_TOKEN_HERE';
+var OWNER_USER_ID        = 'YOUR_LINE_USER_ID_HERE';
 
 function doPost(e) {
+  // LINE webhook sends JSON; form submission sends application/x-www-form-urlencoded
+  if (e.postData && e.postData.type === 'application/json') {
+    return handleLineWebhook(e);
+  }
+  return handleFormSubmission(e);
+}
+
+function handleLineWebhook(e) {
+  try {
+    var body   = JSON.parse(e.postData.contents);
+    var events = body.events || [];
+    var sheet  = SpreadsheetApp.openById(SHEET_ID).getActiveSheet();
+    events.forEach(function (event) {
+      if (event.source) {
+        var id = event.source.groupId || event.source.userId || '';
+        var ts = Utilities.formatDate(new Date(), 'Asia/Taipei', 'yyyy-MM-dd HH:mm:ss');
+        sheet.appendRow(['[webhook]', id, event.type, ts]);
+      }
+    });
+  } catch (err) {
+    // ignore so LINE always gets 200
+  }
+  return ContentService.createTextOutput(JSON.stringify({ ok: true }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function handleFormSubmission(e) {
   try {
     var name    = (e.parameter.name    || '').trim();
     var phone   = (e.parameter.phone   || '').trim();
@@ -38,8 +65,8 @@ function doPost(e) {
   }
 }
 
-// Run this from GAS editor to test without a browser
+// Run from GAS editor to test form submission
 function testDoPost() {
   var fake = { parameter: { name: '測試', phone: '0912345678', address: '台中市西屯區某路1號' } };
-  Logger.log(doPost(fake).getContent());
+  Logger.log(handleFormSubmission(fake).getContent());
 }
