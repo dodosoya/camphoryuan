@@ -206,6 +206,59 @@
       .icon-pop, .feat-icon { opacity: 1; transform: none; transition: none; }
     }
 
+    /* ── Review cards: hover lift ── */
+    .review-card {
+      transition: opacity 0.6s ease,
+                  transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.3s ease;
+    }
+    .review-card:hover {
+      transition-delay: 0s;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 36px rgba(27,51,13,0.16) !important;
+    }
+    .review-tip-card {
+      transition: opacity 0.6s ease,
+                  transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.3s ease;
+    }
+    .review-tip-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.28) !important;
+    }
+
+    /* ── Review quote mark: spring scale on reveal ── */
+    .review-quote {
+      opacity: 0;
+      transform: scale(0.5) rotate(-10deg);
+      transition: opacity 0.5s ease,
+                  transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .reveal.visible .review-quote { opacity: 0.15; transform: scale(1) rotate(0deg); }
+    .d1 .review-quote { transition-delay: 0.22s; }
+    .d2 .review-quote { transition-delay: 0.32s; }
+    .d3 .review-quote { transition-delay: 0.42s; }
+    .d4 .review-quote { transition-delay: 0.52s; }
+
+    /* ── Review badge: spring pop ── */
+    .review-badge {
+      opacity: 0;
+      transform: scale(0.55);
+      transition: opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .reveal.visible .review-badge { opacity: 1; transform: scale(1); }
+    .d1 .review-badge { transition-delay: 0.38s; }
+    .d2 .review-badge { transition-delay: 0.48s; }
+    .d3 .review-badge { transition-delay: 0.58s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .review-card, .review-tip-card { transition: none; }
+      .review-card:hover, .review-tip-card:hover { transform: none; }
+      .review-quote { opacity: 0.15; transform: none; transition: none; }
+      .review-badge { opacity: 1; transform: none; transition: none; }
+    }
+
     /* ══════════════════════════════════════════
        DESKTOP TOP NAV — slides in on scroll
     ══════════════════════════════════════════ */
@@ -514,6 +567,7 @@
         <li><a href="#process"  class="nav-link" data-section="process">製作過程</a></li>
         <li><a href="#benefits" class="nav-link" data-section="benefits">產品特色</a></li>
         <li><a href="#gallery"  class="nav-link" data-section="gallery">農場實景</a></li>
+        <li><a href="#reviews"  class="nav-link" data-section="reviews">顧客評價</a></li>
         <li>
           <a href="#contact" class="nav-cta" data-section="contact">
             聯絡購買
@@ -555,6 +609,12 @@
         <path d="M21 15l-5-5L5 21" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <span>農場</span>
+    </a>
+    <a href="#reviews"  class="btab" data-section="reviews">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>評價</span>
     </a>
     <a href="#contact"  class="btab btab-cta" data-section="contact">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
@@ -938,7 +998,96 @@
 
 
   <!-- ═══════════════════════════════
-       7. CONTACT / CTA  (forest bg + top wave)
+       7. CUSTOMER REVIEWS
+  ═══════════════════════════════ -->
+  <section id="reviews" class="py-16 sm:py-20 md:py-28 px-5 sm:px-8" style="background:#EDE4D3;">
+    <div class="max-w-5xl mx-auto">
+
+      <div class="text-center mb-12 reveal">
+        <div class="section-label text-forest"><span>Reviews</span></div>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-forest font-serif">顧客真實回饋</h2>
+        <span class="gold-line"></span>
+      </div>
+
+      <!-- Testimonial cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+
+        <!-- 王小姐 -->
+        <div class="reveal d1 review-card bg-cream rounded-2xl p-6 sm:p-8 relative overflow-hidden flex flex-col" style="border-left:3px solid #C8973A;box-shadow:0 2px 20px rgba(27,51,13,0.08);">
+          <span class="review-quote absolute top-2 left-4 font-serif select-none pointer-events-none" style="font-size:72px;color:#C8973A;line-height:1;">"</span>
+          <p class="text-[15px] leading-[1.9] font-serif relative z-10 flex-1" style="color:#1B330D;">
+            我是個注重養生保養的人，當我接觸嘗試牛樟茶後，才得知是很好的健康飲品！開始飲用後身體狀況有所改善，之前有疲倦感，尤其工作繁忙，但自從喝它之後，精力精神變得更加充沛，不容易感到疲乏。消化系統也顯著改善，非常利尿，身體變得輕鬆不少。<br><br>
+            牛樟茶口味甘甜，每天飲用在生活中確實帶來無比的好處。這麼棒的產品，我會持續飲用也會幫忙推廣！
+          </p>
+          <div class="flex items-center gap-3 mt-6 pt-4" style="border-top:1px solid rgba(45,80,22,0.12);">
+            <div class="review-badge w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold font-serif shrink-0" style="background:#2D5016;color:#F5F0E8;">王</div>
+            <span class="font-serif text-sm" style="color:#8B5E3C;">王小姐</span>
+          </div>
+        </div>
+
+        <!-- 陳小姐 -->
+        <div class="reveal d2 review-card bg-cream rounded-2xl p-6 sm:p-8 relative overflow-hidden flex flex-col" style="border-left:3px solid #C8973A;box-shadow:0 2px 20px rgba(27,51,13,0.08);">
+          <span class="review-quote absolute top-2 left-4 font-serif select-none pointer-events-none" style="font-size:72px;color:#C8973A;line-height:1;">"</span>
+          <p class="text-[15px] leading-[1.9] font-serif relative z-10 flex-1" style="color:#1B330D;">
+            原本不愛喝水的我，總覺得水有一股消毒味，長期下來有便秘、尿道發炎、皮膚粗糙暗沈、脹氣等問題。<br><br>
+            經朋友分享牛樟茶後，每天煮三包 1500cc 當水喝，喝完會回甘很順口、好入睡，之前的狀況改善了很多。天然的茶無負擔也很放心，每天喝習慣身體也變輕鬆了。好東西我願意回購及分享給朋友！
+          </p>
+          <div class="flex items-center gap-3 mt-6 pt-4" style="border-top:1px solid rgba(45,80,22,0.12);">
+            <div class="review-badge w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold font-serif shrink-0" style="background:#2D5016;color:#F5F0E8;">陳</div>
+            <span class="font-serif text-sm" style="color:#8B5E3C;">陳小姐</span>
+          </div>
+        </div>
+
+        <!-- 徐先生 (full-width on sm+) -->
+        <div class="reveal d3 review-card bg-cream rounded-2xl p-6 sm:p-8 relative overflow-hidden flex flex-col sm:col-span-2" style="border-left:3px solid #C8973A;box-shadow:0 2px 20px rgba(27,51,13,0.08);">
+          <span class="review-quote absolute top-2 left-4 font-serif select-none pointer-events-none" style="font-size:72px;color:#C8973A;line-height:1;">"</span>
+          <p class="text-[15px] leading-[1.9] font-serif relative z-10 flex-1" style="color:#1B330D;">
+            我和師姐都是把葉子直接用煮的。個人喝了幾天感覺火氣變小了，且睡眠也變好了。師姐最明顯的是說每天放屁的次數好幾次，但喝了幾天後次數明顯減少很多，胃腸也變得很好。這是我們喝了之後的個人感受，感謝能喝到如此珍貴的牛樟茶，祝福全家健康快樂。
+          </p>
+          <div class="flex items-center gap-3 mt-6 pt-4" style="border-top:1px solid rgba(45,80,22,0.12);">
+            <div class="review-badge w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold font-serif shrink-0" style="background:#2D5016;color:#F5F0E8;">徐</div>
+            <span class="font-serif text-sm" style="color:#8B5E3C;">徐先生</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Brewing tips card: 百浂牛樟園 -->
+      <div class="reveal d4 review-tip-card rounded-2xl p-6 sm:p-8 md:p-10" style="background:#2D5016;color:#F5F0E8;">
+        <div class="flex flex-col sm:flex-row sm:items-start gap-6">
+          <div class="shrink-0 text-center sm:text-left">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full mb-3" style="background:rgba(200,151,58,0.18);border:1px solid rgba(200,151,58,0.35);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#C8973A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M12 22C6 17 2 12.5 2 8a10 10 0 0 1 20 0c0 4.5-4 9-10 14z"/><path d="M12 8v6M9 11l3-3 3 3"/></svg>
+            </div>
+            <p class="text-xs uppercase tracking-[0.25em] mb-1" style="color:rgba(245,240,232,0.45);">泡法指南</p>
+            <p class="font-serif font-bold text-lg" style="color:#C8973A;">百浂牛樟園</p>
+          </div>
+          <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-5 text-[14px] leading-[1.85]" style="color:rgba(245,240,232,0.82);">
+            <div>
+              <p class="font-semibold mb-2 tracking-wide" style="color:#C8973A;">泡法</p>
+              <p><span class="font-semibold" style="color:#F5F0E8;">熱泡：</span>熱水泡燜 5 分鐘，可回沖。</p>
+              <p class="mt-2"><span class="font-semibold" style="color:#F5F0E8;">煮沸：</span>煮沸後轉小火 2 分鐘，再燜 5 分鐘。茶包與水比例 1:500cc，多煮一壺當茶喝，6 小時內飲完（冷藏可放 2 天）。</p>
+            </div>
+            <div>
+              <p class="font-semibold mb-2 tracking-wide" style="color:#C8973A;">飲用感受</p>
+              <ul class="space-y-1">
+                <li>利尿，幫助代謝</li>
+                <li>持續喝 3～6 個月，調節生理機能</li>
+                <li>精神變好、助眠（無咖啡因）、護肝</li>
+                <li>皮膚紅疹、癢、過敏明顯改善</li>
+                <li>無含糖，老少咸宜，孩子少買飲料</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════
+       8. CONTACT / CTA  (forest bg + top wave)
   ═══════════════════════════════ -->
   <section id="contact" class="bg-forest text-cream">
     <!-- Top wave: cream bleeds into forest -->
@@ -1107,7 +1256,7 @@
       var botNav    = document.getElementById('bottom-nav');
       // Collect all nav anchors from both bars
       var allLinks  = document.querySelectorAll('.nav-link, .nav-cta, .btab');
-      var sections  = ['story', 'tree', 'process', 'benefits', 'gallery', 'contact']
+      var sections  = ['story', 'tree', 'process', 'benefits', 'gallery', 'reviews', 'contact']
                         .map(function (id) { return document.getElementById(id); })
                         .filter(Boolean);
 
